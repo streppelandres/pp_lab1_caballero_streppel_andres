@@ -4,9 +4,9 @@ hardcoded_numbers = [10, -50, 73, 0, 88, -20, -16, 55, 42, -81, 94, 39, -3, -69,
          -91, 12, 28, 49, -29, -32, 51, -94, 80, 35, 26, -57, -39, -63, -87, -90, -53, -9, 7, 66, -43, -85, 20, 19,
           86, -65, 17, 44, 61, -76]
 hardcoded_words = ['manzana', 'guitarra', 'perro', 'casa', 'gato', 'coche', 'libro', 'fútbol', 'montaña', 'playa',
-       'bici', 'jardín', 'galleta', 'chocolate', 'café', 'película', 'televisor', 'sol', 'lluvia', 'nieve',
+       'bici', 'jardín', 'galleta', 'Chocolate', 'café', 'película', 'televisor', 'sol', 'lluvia', 'nieve',
        'mesa', 'silla', 'computadora', 'ojo', 'ratón', 'teclado', 'planta', 'pintura', 'teléfono', 'reloj',
-       'hamburguesa', 'anana', 'ensalada', 'pollo', 'pescado', 'arroz', 'frijoles', 'sopa', 'postre', 'leche',
+       'hamburguesa', 'anana', 'ensalada', 'pollo', 'pescado', 'arroz', 'Frijoles', 'sopa', 'postre', 'leche',
        'vino', 'cerveza', 'agua', 'fuego', 'aire', 'tierra', 'mar', 'río', 'cielo', 'estrella']
 
 '''
@@ -163,5 +163,30 @@ def ejercicio_16():
 Dado un número entero n, imprimir la secuencia de números de Harshad menores o iguales a n
 '''
 def ejercicio_17():
+    is_harshad = lambda number: number % sum(int(digit) for digit in str(number)) == 0
     n = int(input('Ingrese un número:\n'))
-    
+    print(list(filter(lambda num : is_harshad(num), range(1, n))))
+#ejercicio_17()
+
+'''
+Dada una lista de números, imprimir la suma de los números en la lista que son mayores que el promedio de la lista
+'''
+def ejercicio_18():
+    print(sum(filter(lambda n : n > round(sum(hardcoded_numbers) / len(hardcoded_numbers), 2), hardcoded_numbers)))
+#ejercicio_18()
+
+'''
+Dada una lista de palabras, imprimir las palabras que tienen una letra mayúscula
+'''
+def ejercicio_19():
+    print(list(filter(lambda word : word[0].isupper(), hardcoded_words)))
+#ejercicio_19()
+
+'''
+Dado un número entero n, imprimir la secuencia de números triangulares menores o iguales a n
+'''
+def ejercicio_20():
+    is_triangular = lambda number : sqrt(8 * number + 1).is_integer()
+    number = int(input('Ingrese un número:\n'))
+    print(list(filter(lambda n : is_triangular(n), range(1, number))))
+#ejercicio_20()
