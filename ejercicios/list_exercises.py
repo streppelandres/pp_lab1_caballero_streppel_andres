@@ -73,7 +73,7 @@ Crea una lista con los nombres de tus 5 libros favoritos y luego imprime solo lo
 '''
 def ejercicio_8():
     print(['Book 1', 'Book 2', 'Book 3', 'Book 4', 'Book 5'][0:3])
-ejercicio_8()
+#ejercicio_8()
 
 '''
 Crea una lista de números enteros y pide al usuario que ingrese otro número entero.
@@ -96,11 +96,22 @@ def ejercicio_10():
 Crea una lista de palabras y pide al usuario que ingrese una palabra.
 Luego, muestra todas las palabras de la lista que tienen la misma longitud que la palabra ingresada.
 '''
+def ejercicio_11():
+    word = input('Ingrese una palabra:\n')
+    print(list(filter(lambda w : len(w) == len(word), ['gato', 'perro', 'cobayo', 'conejo', 'cotorrita'])))
+#ejercicio_11()
 
 '''
 Crea una lista con los nombres de tus 3 películas favoritas
 y luego imprime los elementos en orden inverso (sin utilizar el método reverse())
 '''
+def ejercicio_12():
+    movies = ['Movie 1', 'Movie 2', 'Movie 3']
+    i = len(movies) - 1
+    while i >= 0:
+        print(movies[i])
+        i-=1
+ejercicio_12()
 
 '''
 Crea una lista de números y encuentra el promedio de todos los números en la lista.
