@@ -111,25 +111,58 @@ def ejercicio_12():
     while i >= 0:
         print(movies[i])
         i-=1
-ejercicio_12()
+#ejercicio_12()
 
 '''
 Crea una lista de números y encuentra el promedio de todos los números en la lista.
 '''
+def ejercicio_13():
+    numbers = [3, -3, 9, 1, 2, 43, 12, 4]
+    print(sum(numbers) / len(numbers))
+#ejercicio_13()
 
 '''
 Crea dos listas de 10 números enteros cada una y realiza una multiplicación de los elementos con el mismo índice en ambas listas.
 '''
+def ejercicio_14():
+    numbers_a = [5, 4, 3, 2, 1, 6, 7, 8, 9, 10]
+    numbers_b = [10, 9, 7, 7, 6, 1, 2, 3, 4, 5]
+    numbers_multiply = []
+    for i in range(0, len(numbers_a)):
+        numbers_multiply.append(numbers_a[i] * numbers_b[i])
+    print(numbers_multiply)
+#ejercicio_14()
 
 '''
 Crea una lista de números enteros y luego encuentra la suma de los números en índices impares.
 '''
+def ejercicio_15():
+    numbers = [5, 4, 3, 2, 1, 6, 7, 8, 9, 10]
+    amount = 0
+    for i in range(0, len(numbers)):
+        if i % 2 != 0:
+            amount += numbers[i]
+    print(amount)
+#ejercicio_15()
 
 '''
 Crea dos listas con la misma cantidad de elementos
 y luego crea una tercera lista que contenga los elementos de ambas listas intercalados.
 Por ejemplo, si las dos listas son [1, 2, 3] y ["a", "b", "c"], la tercera lista debería ser [1, "a", 2, "b", 3, "c"].
 '''
+def ejercicio_16():
+    list_a = [1, 2, 3, 4, 5]
+    list_b = ['a', 'b', 'c', 'd', 'e']
+    list_c = []
+    i = 0
+    j = 0
+    while i < len(list_a) + len(list_b):
+        list_c.insert(j, list_a.pop(0))
+        list_c.insert(j + 1, list_b.pop(0))
+        i+=1
+        j+=2
+    print(list_c)
+#ejercicio_16()
 
 '''
 Crea dos listas de números y encuentra los elementos que se encuentran en ambas listas.
