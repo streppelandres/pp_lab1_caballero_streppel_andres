@@ -1,5 +1,5 @@
 import copy
-import class_03_data as data
+import data as data
 
 API_RESPONSE = data.lista_personajes
 
