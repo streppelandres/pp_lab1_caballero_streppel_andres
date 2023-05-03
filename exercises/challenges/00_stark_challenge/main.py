@@ -1,5 +1,5 @@
-import class_03_repository as repo
-import class_03_utils as utils
+import repository as repo
+import utils as utils
 
 if __name__ == '__main__':
     while True:
