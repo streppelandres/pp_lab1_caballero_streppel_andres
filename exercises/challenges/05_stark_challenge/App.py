@@ -1,12 +1,13 @@
 from utils.json_utils import load_json
 from utils.config_utils import load_config
 from utils.console_utils import *
+from HeroesHelper import HeroesHelper
 
 JSON_DATA_PATH = './data/heroes.json'
 INI_CONFIG_PATH = './config/config.ini'
 
 class App:
-    heroes: list
+    heroesHelper: HeroesHelper
     menu: str
     options : dict
     
@@ -14,7 +15,7 @@ class App:
         '''
         Initialize the app, load the heroes data, ini config file and menu options
         '''
-        self.heroes = load_json(JSON_DATA_PATH)
+        self.heroesHelper = HeroesHelper(load_json(JSON_DATA_PATH))
         self.config = load_config(INI_CONFIG_PATH)
         self.options = {
             'A' : self.option_a,
@@ -35,7 +36,7 @@ class App:
 
     def option_a(self):
         clear_console()
-        print_json(self.heroes)
+        print(self.heroesHelper.heroes)
         request_input()
     
 
