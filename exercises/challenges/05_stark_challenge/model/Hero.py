@@ -14,16 +14,16 @@ class Hero:
     intelligence: str
 
     def __init__(self, name, identity, company, height, weight, gender, eyes_color, hair_color, strength, intelligence):
-        self.name = name
-        self.identity = identity
-        self.company = company
+        self.name = name.capitalize()
+        self.identity = identity.capitalize()
+        self.company = company.capitalize()
         self.height = float(height)
         self.weight = float(weight)
-        self.gender = gender
-        self.eyes_color = eyes_color
-        self.hair_color = hair_color
+        self.gender = gender.capitalize()
+        self.eyes_color = eyes_color.capitalize()
+        self.hair_color = hair_color.capitalize()
         self.strength = int(strength)
-        self.intelligence = intelligence
+        self.intelligence = intelligence.capitalize()
 
     def __str__(self, hide_identity=True):
         return (f'Name: {self.name}, identity: {hide_identity and "secret" or self.identity}, '

@@ -18,14 +18,11 @@ class App:
         self.heroes_helper = HeroesHelper(load_json(JSON_DATA_PATH))
         self.config = load_config(INI_CONFIG_PATH)
         self.options = {
-            'A' : self.option_a,
-            'B' : self.option_b,
-            'C' : self.option_c,
-            'D' : self.option_d,
-            'E' : self.option_e,
-            'F' : self.option_f,
-            'G' : self.option_g,
-            'H' : self.option_h,
+            'A' : self.option_a, 'B' : self.option_b, 'C' : self.option_c,
+            'D' : self.option_d, 'E' : self.option_e, 'F' : self.option_f,
+            'G' : self.option_g, 'H' : self.option_h, 'I' : self.option_i,
+            'J' : self.option_j, 'K' : self.option_k, 'L' : self.option_l,
+            'M' : self.option_m, 'N' : self.option_n, 'O' : self.option_o,
             'X' : self.option_exit
         }
 
@@ -62,52 +59,106 @@ class App:
 
     def option_a(self):
         clear_console()
-        print('Recorrer la lista imprimiendo por consola el nombre de cada superhéroe de género M:\n')
+        print('A - Recorrer la lista imprimiendo por consola el nombre de cada superhéroe de género M:\n')
         App.print_heroes(self.heroes_helper.get_males_heroes())
         request_input()
     
 
     def option_b(self):
         clear_console()
-        print('Recorrer la lista imprimiendo por consola el nombre de cada superhéroe de género F:\n')
+        print('B - Recorrer la lista imprimiendo por consola el nombre de cada superhéroe de género F:\n')
         App.print_heroes(self.heroes_helper.get_females_heroes())
         request_input()
 
 
     def option_c(self):
         clear_console()
-        print('Recorrer la lista y determinar cuál es el superhéroe más alto de género M:\n')
+        print('C - Recorrer la lista y determinar cuál es el superhéroe más alto de género M:\n')
         print(self.heroes_helper.get_more_height_male())
         request_input()
 
     def option_d(self):
         clear_console()
-        print('Recorrer la lista y determinar cuál es el superhéroe más alto de género F :\n')
+        print('D - Recorrer la lista y determinar cuál es el superhéroe más alto de género F :\n')
         print(self.heroes_helper.get_more_height_female())
         request_input()
 
     def option_e(self):
         clear_console()
-        print('Recorrer la lista y determinar cuál es el superhéroe más bajo  de género M:\n')
+        print('E - Recorrer la lista y determinar cuál es el superhéroe más bajo  de género M:\n')
         print(self.heroes_helper.get_less_height_male())
         request_input()
 
     def option_f(self):
         clear_console()
-        print('Recorrer la lista y determinar cuál es el superhéroe más bajo  de género F:\n')
+        print('F - Recorrer la lista y determinar cuál es el superhéroe más bajo  de género F:\n')
         print(self.heroes_helper.get_less_height_female())
         request_input()
     
     def option_g(self):
         clear_console()
-        print('Recorrer la lista y determinar la altura promedio de los  superhéroes de género M:\n')
+        print('G - Recorrer la lista y determinar la altura promedio de los  superhéroes de género M:\n')
         print(self.heroes_helper.get_average_height_male())
         request_input()
 
     def option_h(self):
         clear_console()
-        print('Recorrer la lista y determinar la altura promedio de los  superhéroes de género F:\n')
+        print('H - Recorrer la lista y determinar la altura promedio de los  superhéroes de género F:\n')
         print(self.heroes_helper.get_average_height_female())
+        request_input()
+
+    def option_i(self):
+        clear_console()
+        print('I - Informar cual es el Nombre del superhéroe asociado a cada uno de los indicadores anteriores (ítems C a F):\n')
+        
+        print('C - Recorrer la lista y determinar cuál es el superhéroe más alto de género M:')
+        self.print_hero(self.heroes_helper.get_more_height_male(), False)
+
+        print('\nD - Recorrer la lista y determinar cuál es el superhéroe más alto de género F :')
+        self.print_hero(self.heroes_helper.get_more_height_female(), False)
+
+        print('\nE - Recorrer la lista y determinar cuál es el superhéroe más bajo  de género M:')
+        self.print_hero(self.heroes_helper.get_less_height_male(), False)
+
+        print('\nF - Recorrer la lista y determinar cuál es el superhéroe más bajo  de género F:')
+        self.print_hero(self.heroes_helper.get_less_height_female(), False)
+
+        request_input()
+
+    def option_j(self):
+        clear_console()
+        print('J - Determinar cuántos superhéroes tienen cada tipo de color de ojos:\n')
+        print(self.heroes_helper.get_grouped_amount_by_eyes_color())
+        request_input()
+
+    def option_k(self):
+        clear_console()
+        print('K - Determinar cuántos superhéroes tienen cada tipo de color de pelo:\n')
+        print(self.heroes_helper.get_grouped_amount_by_hair_color())
+        request_input()
+
+    def option_l(self):
+        clear_console()
+        print('L - Determinar cuántos superhéroes tienen cada tipo de inteligencia (En caso de no tener, Inicializarlo con ‘No Tiene’):\n')
+        print(self.heroes_helper.get_grouped_amount_by_intelligence())
+        request_input()
+
+    def option_m(self):
+        clear_console()
+        print('M - Listar todos los superhéroes agrupados por color de ojos:\n')
+        print(self.heroes_helper.get_grouped_by_intelligence())
+        request_input()
+
+    def option_n(self):
+        clear_console()
+        print('N - Listar todos los superhéroes agrupados por color de pelo:\n')
+        print(self.heroes_helper.get_grouped_by_intelligence())
+        request_input()
+
+    def option_o(self):
+        clear_console()
+        print('O - Listar todos los superhéroes agrupados por tipo de inteligencia:\n')
+        print(self.heroes_helper.get_grouped_by_intelligence())
         request_input()
 
     def option_exit(self):
