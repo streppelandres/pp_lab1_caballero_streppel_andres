@@ -1,4 +1,5 @@
 from model.Hero import Hero
+from utils.csv_utils import *
 
 
 class HeroesHelper:
@@ -49,16 +50,31 @@ class HeroesHelper:
                 hero.intelligence = 'Does not have'
 
             if hero[key] in grouped_heroes.keys():
-                grouped_heroes[hero[key]].append(hero.get_name()) # TODO: Remove the 'get_name'
+                grouped_heroes[hero[key]].append(
+                    hero.get_name())  # TODO: Remove the 'get_name'
             else:
                 grouped_heroes[hero[key]] = []
-                grouped_heroes[hero[key]].append(hero.get_name()) # TODO: Remove the 'get_name'
+                grouped_heroes[hero[key]].append(
+                    hero.get_name())  # TODO: Remove the 'get_name'
 
         return grouped_heroes
 
     def __get_grouped_amount_of_heroes_by_key(self, key):
         grouped_heroes = self.__get_grouped_heroes_by_key(key)
         return {k: len(grouped_heroes[k]) for k in grouped_heroes}
+
+    @staticmethod
+    def save_heroes_to_csv(file_name, heroes):
+        data = [['Name', 'Identity', 'Company', 'Height', 'Weight', 'Gender',
+                 'Eyes color', 'Hair color', 'Strength', 'Intelligence']]
+        
+        for hero in heroes:
+            data.append([hero.name, hero.identity, hero.company, hero.height,
+                         hero.weight, hero.gender, hero.eyes_color, hero.hair_color,
+                         hero.strength, hero.intelligence])
+        
+        save_csv(file_name, data)
+
 
     # Use cases:
 

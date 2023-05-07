@@ -60,14 +60,18 @@ class App:
     def option_a(self):
         clear_console()
         print('A - Recorrer la lista imprimiendo por consola el nombre de cada superhéroe de género M:\n')
-        App.print_heroes(self.heroes_helper.get_males_heroes())
+        heroes = self.heroes_helper.get_males_heroes()
+        App.print_heroes(heroes)
+        HeroesHelper.save_heroes_to_csv('males_heroes', heroes)
         request_input()
     
 
     def option_b(self):
         clear_console()
         print('B - Recorrer la lista imprimiendo por consola el nombre de cada superhéroe de género F:\n')
-        App.print_heroes(self.heroes_helper.get_females_heroes())
+        heroes = self.heroes_helper.get_females_heroes()
+        App.print_heroes(heroes)
+        HeroesHelper.save_heroes_to_csv('females_heroes', heroes)
         request_input()
 
 
