@@ -17,6 +17,8 @@ class App:
         '''
         self.heroes_helper = HeroesHelper(load_json(JSON_DATA_PATH))
         self.config = load_config(INI_CONFIG_PATH)
+        
+        # if these was wrapped in classes, maybe this can be done in a dynamic wave
         self.options = {
             'A' : self.option_a, 'B' : self.option_b, 'C' : self.option_c,
             'D' : self.option_d, 'E' : self.option_e, 'F' : self.option_f,
@@ -78,37 +80,49 @@ class App:
     def option_c(self):
         clear_console()
         print('C - Recorrer la lista y determinar cuál es el superhéroe más alto de género M:\n')
-        print(self.heroes_helper.get_more_height_male())
+        hero = self.heroes_helper.get_more_height_male()
+        print(hero)
+        HeroesHelper.save_hero_to_csv('more_height_male', hero)
         request_input()
 
     def option_d(self):
         clear_console()
         print('D - Recorrer la lista y determinar cuál es el superhéroe más alto de género F :\n')
-        print(self.heroes_helper.get_more_height_female())
+        hero = self.heroes_helper.get_more_height_female()
+        print(hero)
+        HeroesHelper.save_hero_to_csv('more_height_female', hero)
         request_input()
 
     def option_e(self):
         clear_console()
         print('E - Recorrer la lista y determinar cuál es el superhéroe más bajo  de género M:\n')
-        print(self.heroes_helper.get_less_height_male())
+        hero = self.heroes_helper.get_less_height_male()
+        print(hero)
+        HeroesHelper.save_hero_to_csv('less_height_male', hero)
         request_input()
 
     def option_f(self):
         clear_console()
         print('F - Recorrer la lista y determinar cuál es el superhéroe más bajo  de género F:\n')
-        print(self.heroes_helper.get_less_height_female())
+        hero = self.heroes_helper.get_less_height_female()
+        print(hero)
+        HeroesHelper.save_hero_to_csv('less_height_female', hero)
         request_input()
     
     def option_g(self):
         clear_console()
         print('G - Recorrer la lista y determinar la altura promedio de los  superhéroes de género M:\n')
-        print(self.heroes_helper.get_average_height_male())
+        average = self.heroes_helper.get_average_height_male()
+        print(average)
+        HeroesHelper.save_average_height('average_height_male', average)
         request_input()
 
     def option_h(self):
         clear_console()
         print('H - Recorrer la lista y determinar la altura promedio de los  superhéroes de género F:\n')
-        print(self.heroes_helper.get_average_height_female())
+        average = self.heroes_helper.get_average_height_female()
+        print(average)
+        HeroesHelper.save_average_height('average_height_female', average)
         request_input()
 
     def option_i(self):
@@ -116,16 +130,24 @@ class App:
         print('I - Informar cual es el Nombre del superhéroe asociado a cada uno de los indicadores anteriores (ítems C a F):\n')
         
         print('C - Recorrer la lista y determinar cuál es el superhéroe más alto de género M:')
-        self.print_hero(self.heroes_helper.get_more_height_male(), False)
-
+        more_height_male = self.heroes_helper.get_more_height_male()
+        self.print_hero(more_height_male, False)
+        HeroesHelper.save_hero_to_csv('more_height_male_secret', more_height_male, False)
+        
         print('\nD - Recorrer la lista y determinar cuál es el superhéroe más alto de género F :')
-        self.print_hero(self.heroes_helper.get_more_height_female(), False)
+        more_height_female = self.heroes_helper.get_more_height_female()
+        self.print_hero(more_height_male, False)
+        HeroesHelper.save_hero_to_csv('more_height_female_secret', more_height_female, False)
 
         print('\nE - Recorrer la lista y determinar cuál es el superhéroe más bajo  de género M:')
-        self.print_hero(self.heroes_helper.get_less_height_male(), False)
+        less_height_male = self.heroes_helper.get_less_height_male()
+        self.print_hero(less_height_male, False)
+        HeroesHelper.save_hero_to_csv('less_height_male_secret', less_height_male, False)
 
         print('\nF - Recorrer la lista y determinar cuál es el superhéroe más bajo  de género F:')
-        self.print_hero(self.heroes_helper.get_less_height_female(), False)
+        less_height_female = self.heroes_helper.get_less_height_female()
+        self.print_hero(less_height_female, False)
+        HeroesHelper.save_hero_to_csv('less_height_female_secret', less_height_female, False)
 
         request_input()
 
