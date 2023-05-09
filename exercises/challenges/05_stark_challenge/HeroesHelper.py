@@ -59,7 +59,7 @@ class HeroesHelper:
 
         return grouped_heroes
 
-    def __get_grouped_amount_of_heroes_by_key(self, key):
+    def __get_grouped_quantity_of_heroes_by_key(self, key):
         grouped_heroes = self.__get_grouped_heroes_by_key(key)
         return {k: len(grouped_heroes[k]) for k in grouped_heroes}
 
@@ -98,7 +98,7 @@ class HeroesHelper:
         save_csv(file_name, [head] + [data])
 
     @staticmethod
-    def __save_grouped_amount_by_attr(elements, file_name, attr):
+    def __save_grouped_quantity_by_attr(elements, file_name, attr):
         head = [attr, 'quantity']
         data = []
         for key in list(elements.keys()):
@@ -143,26 +143,26 @@ class HeroesHelper:
     def save_average_height(file_name, average):
         HeroesHelper.__save_to_csv_with_head(file_name, [file_name], [average])
 
-    def get_grouped_amount_by_eyes_color(self):
-        return self.__get_grouped_amount_of_heroes_by_key('eyes_color')
+    def get_grouped_quantity_by_eyes_color(self):
+        return self.__get_grouped_quantity_of_heroes_by_key('eyes_color')
 
     @staticmethod
-    def save_grouped_amount_by_eyes_color(elements):
-        HeroesHelper.__save_grouped_amount_by_attr(elements, 'grouped_amount_by_eyes_color', 'eyes_color')
+    def save_grouped_quantity_by_eyes_color(elements):
+        HeroesHelper.__save_grouped_quantity_by_attr(elements, 'grouped_quantity_by_eyes_color', 'eyes_color')
 
-    def get_grouped_amount_by_hair_color(self):
-        return self.__get_grouped_amount_of_heroes_by_key('hair_color')
+    def get_grouped_quantity_by_hair_color(self):
+        return self.__get_grouped_quantity_of_heroes_by_key('hair_color')
 
     @staticmethod
-    def save_grouped_amount_by_hair_color(elements):
-        HeroesHelper.__save_grouped_amount_by_attr(elements, 'grouped_amount_by_hair_color', 'hair_color')
+    def save_grouped_quantity_by_hair_color(elements):
+        HeroesHelper.__save_grouped_quantity_by_attr(elements, 'grouped_quantity_by_hair_color', 'hair_color')
 
-    def get_grouped_amount_by_intelligence(self):
-        return self.__get_grouped_amount_of_heroes_by_key('intelligence')
+    def get_grouped_quantity_by_intelligence(self):
+        return self.__get_grouped_quantity_of_heroes_by_key('intelligence')
     
     @staticmethod
-    def save_grouped_amount_by_intelligence(elements):
-        HeroesHelper.__save_grouped_amount_by_attr(elements, 'grouped_amount_by_intelligence', 'intelligence')
+    def save_grouped_quantity_by_intelligence(elements):
+        HeroesHelper.__save_grouped_quantity_by_attr(elements, 'grouped_quantity_by_intelligence', 'intelligence')
         
     def get_grouped_by_eyes_color(self):
         return self.__get_grouped_heroes_by_key('eyes_color')
