@@ -178,19 +178,25 @@ class App:
     def option_m(self):
         clear_console()
         print('M - Listar todos los superhéroes agrupados por color de ojos:\n')
-        print(self.heroes_helper.get_grouped_by_intelligence())
+        grouped_heroes = self.heroes_helper.get_grouped_by_eyes_color()
+        print(grouped_heroes)
+        HeroesHelper.save_grouped_by_eyes_color(grouped_heroes)
         request_input()
 
     def option_n(self):
         clear_console()
         print('N - Listar todos los superhéroes agrupados por color de pelo:\n')
-        print(self.heroes_helper.get_grouped_by_intelligence())
+        grouped_heroes = self.heroes_helper.get_grouped_by_hair_color()
+        print(grouped_heroes)
+        HeroesHelper.save_grouped_by_hair_color(grouped_heroes)
         request_input()
 
     def option_o(self):
         clear_console()
         print('O - Listar todos los superhéroes agrupados por tipo de inteligencia:\n')
-        print(self.heroes_helper.get_grouped_by_intelligence())
+        grouped_heroes = self.heroes_helper.get_grouped_by_intelligence()
+        print(grouped_heroes)
+        HeroesHelper.save_grouped_by_intelligence(grouped_heroes)
         request_input()
 
     def option_exit(self):

@@ -88,14 +88,14 @@ class HeroesHelper:
         data = [HeroesHelper.__get_hero_head_csv()]
         data.append(HeroesHelper.__get_hero_data_csv(hero, hide_identity))
         save_csv(file_name, data)
-    
-    @staticmethod
-    def __save_to_csv(file_name, head, data):
-        save_csv(file_name, [head] + [data])
-    
+        
     @staticmethod
     def __save_to_csv(file_name, data):
         save_csv(file_name, data)
+
+    @staticmethod
+    def __save_to_csv_with_head(file_name, head, data):
+        save_csv(file_name, [head] + [data])
 
     @staticmethod
     def __save_grouped_amount_by_attr(elements, file_name, attr):
@@ -103,6 +103,14 @@ class HeroesHelper:
         data = []
         for key in list(elements.keys()):
             data.append([key, elements[key]])
+        HeroesHelper.__save_to_csv(file_name, [head] + data)
+    
+    @staticmethod
+    def __save_grouped_heroes_by_attr(grouped_heroes, file_name, attr):
+        head = [attr, 'heroes']
+        data = []
+        for key in list(grouped_heroes.keys()):
+            data.append([key, ' - '.join(grouped_heroes[key])])
         HeroesHelper.__save_to_csv(file_name, [head] + data)
 
     # Use cases:
@@ -133,7 +141,7 @@ class HeroesHelper:
 
     @staticmethod
     def save_average_height(file_name, average):
-        HeroesHelper.__save_to_csv(file_name, [file_name], [average])
+        HeroesHelper.__save_to_csv_with_head(file_name, [file_name], [average])
 
     def get_grouped_amount_by_eyes_color(self):
         return self.__get_grouped_amount_of_heroes_by_key('eyes_color')
@@ -158,9 +166,21 @@ class HeroesHelper:
         
     def get_grouped_by_eyes_color(self):
         return self.__get_grouped_heroes_by_key('eyes_color')
+    
+    @staticmethod
+    def save_grouped_by_eyes_color(grouped_heroes):
+        HeroesHelper.__save_grouped_heroes_by_attr(grouped_heroes, 'grouped_heroes_by_eyes_color', 'eyes_color')
 
     def get_grouped_by_hair_color(self):
         return self.__get_grouped_heroes_by_key('hair_color')
+    
+    @staticmethod
+    def save_grouped_by_hair_color(grouped_heroes):
+        HeroesHelper.__save_grouped_heroes_by_attr(grouped_heroes, 'grouped_heroes_by_hair_color', 'hair_color')
 
     def get_grouped_by_intelligence(self):
         return self.__get_grouped_heroes_by_key('intelligence')
+    
+    @staticmethod
+    def save_grouped_by_intelligence(grouped_heroes):
+        HeroesHelper.__save_grouped_heroes_by_attr(grouped_heroes, 'grouped_heroes_by_intelligence', 'intelligence')
