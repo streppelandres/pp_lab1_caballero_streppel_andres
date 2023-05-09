@@ -154,25 +154,25 @@ class App:
     def option_j(self):
         clear_console()
         print('J - Determinar cuántos superhéroes tienen cada tipo de color de ojos:\n')
-        quantities = self.heroes_helper.get_grouped_amount_by_eyes_color()
+        quantities = self.heroes_helper.get_grouped_quantity_by_eyes_color()
         print(quantities)
-        HeroesHelper.save_grouped_amount_by_eyes_color(quantities)
+        HeroesHelper.save_grouped_quantity_by_eyes_color(quantities)
         request_input()
 
     def option_k(self):
         clear_console()
         print('K - Determinar cuántos superhéroes tienen cada tipo de color de pelo:\n')
-        quantities = self.heroes_helper.get_grouped_amount_by_hair_color()
+        quantities = self.heroes_helper.get_grouped_quantity_by_hair_color()
         print(quantities)
-        HeroesHelper.save_grouped_amount_by_hair_color(quantities)
+        HeroesHelper.save_grouped_quantity_by_hair_color(quantities)
         request_input()
 
     def option_l(self):
         clear_console()
         print('L - Determinar cuántos superhéroes tienen cada tipo de inteligencia (En caso de no tener, Inicializarlo con ‘No Tiene’):\n')
-        quantities = self.heroes_helper.get_grouped_amount_by_intelligence()
+        quantities = self.heroes_helper.get_grouped_quantity_by_intelligence()
         print(quantities)
-        HeroesHelper.save_grouped_amount_by_intelligence(quantities)
+        HeroesHelper.save_grouped_quantity_by_intelligence(quantities)
         request_input()
 
     def option_m(self):
