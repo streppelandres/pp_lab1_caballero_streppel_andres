@@ -3,7 +3,7 @@ import csv
 
 
 def __build_file_path(file_name: str) -> str:
-    return os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '../tmp')), file_name + '.csv')
+    return os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '../_tmp')), file_name + '.csv')
 
 
 def save_csv(file_name: str, rows: list) -> bool:

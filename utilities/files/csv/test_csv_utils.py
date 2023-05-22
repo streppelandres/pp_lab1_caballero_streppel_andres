@@ -1,6 +1,6 @@
 import csv_utils
 
-__CSV_NAME = 'test_save_csv'
+__CSV_NAME = '_test_csv'
 __CSV_HEAD = ['A1', 'B1', 'C1']
 __CSV_DATA = [['A2', 'B2', 'C2'], ['A3', 'B3', 'C3'], ['A4', 'B4', 'C4']]
 
