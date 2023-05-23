@@ -2,18 +2,18 @@ import os
 import csv
 
 
-def __build_file_path(file_name: str) -> str:
-    return os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '../_tmp')), file_name + '.csv')
+def __build_file_path(file_path, file_name: str) -> str:
+    return os.path.join(file_path, file_name + '.csv')
 
 
-def save_csv(file_name: str, rows: list) -> bool:
+def save_csv(file_path, file_name: str, rows: list) -> bool:
     '''
     Save rows to a CSV file
         file_name: Name of the file, concats to the defined '../tmp' folder
         rows: Row list of elements to save, example: [['A1', 'B1', 'C1'], ['A2', 'B2', 'C2'], ['A3', 'B3', 'C3']]
         return: True if all went well or false if something goes wrong
     '''
-    file_path = __build_file_path(file_name)
+    file_path = __build_file_path(file_path, file_name)
     try:
         with open(file_path, 'w', newline='') as csv_file:
             writer = csv.writer(csv_file)
@@ -26,13 +26,13 @@ def save_csv(file_name: str, rows: list) -> bool:
         return False
 
 
-def read_csv(file_name: str) -> list:
+def read_csv(file_path, file_name: str) -> list:
     '''
     Read's entire CSV file
         file_name: Name of the file, concats to the defined '../tmp' folder
         return: List fo readed elements or false if something goes wrong
     '''
-    file_path = __build_file_path(file_name)
+    file_path = __build_file_path(file_path, file_name)
     try:
         csv_rows = []
         with open(file_path, 'r') as csv_file:
