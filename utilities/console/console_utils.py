@@ -34,6 +34,14 @@ def request_int(message:str, retry_message:str='Please, try again') -> int:
     print(f'\n{retry_message}\n')
     request_int(message, retry_message)
 
+# TODO: Pasarlo a regex si no el profe se enoja
+def request_int_in_range(message:str, range_start:int, range_end:int, retry_message:str='Please, try again') -> int:
+    n = input(f'\n{message}\n')
+    if n.isnumeric() and n >= range_start and n <= range_end:
+        return int(n)
+    print(f'\n{retry_message}\n')
+    request_int(message, retry_message)
+
 # TODO: Hacer otro que sea con Regex
 def request_string(message:str, valid_words:list, retry_message:str='Please, try again') -> bool:
     '''

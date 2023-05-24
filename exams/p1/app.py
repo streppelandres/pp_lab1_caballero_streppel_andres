@@ -1,4 +1,4 @@
-from utilities.console.console_utils import clear_console, request_input, print_elements_in_str
+from utilities.console.console_utils import clear_console, request_input, request_int_in_range, print_elements_in_str
 from config.parser import load_config
 from helper import Helper
 
@@ -40,6 +40,10 @@ class App:
     def option_2(self):
         clear_console()
         print(self.menu_splited[2])
+        players = self.helper.get_all_with_name_and_position_with_index()
+        print_elements_in_str(players)
+        index = request_int_in_range('Ingrese un indice para poder ver sus estadísticas:\n', 0, len(players))
+        print(self.helper.get_player_with_statistics_by_index(index))
         request_input()
 
     def option_3(self):
