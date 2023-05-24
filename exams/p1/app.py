@@ -1,4 +1,4 @@
-from utilities.console.console_utils import clear_console, request_input
+from utilities.console.console_utils import clear_console, request_input, print_elements_in_str
 from config.parser import load_config
 from helper import Helper
 
@@ -34,6 +34,7 @@ class App:
     def option_1(self):
         clear_console()
         print(self.menu_splited[1])
+        print_elements_in_str(self.helper.get_all_with_name_and_position())
         request_input()
 
     def option_2(self):
