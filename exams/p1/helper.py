@@ -34,5 +34,11 @@ class Helper:
     def is_hall_of_fame_player_by_name(self, player_name:str) -> bool:
         return Helper.__HALL_FAME_MEMBER_ARCHIVEMENT in self.get_player_archivements_by_name(player_name)
 
+    def __get_player_with_max_stat_attr(self, attr_name:str) -> Player:
+        return max(self.players, key = lambda player : getattr(player.statistics, attr_name))
+
     def get_player_with_max_rebounds(self) -> Player:
-        return max(self.players, key = lambda player : player.statistics.total_rebounds)
+        return self.__get_player_with_max_stat_attr('total_rebounds')
+    
+    def get_player_with_max_field_goal_percentage(self) -> Player:
+        return self.__get_player_with_max_stat_attr('field_goal_percentage')

@@ -19,6 +19,7 @@ class App:
             '1': self.option_1, '2': self.option_2,
             '3': self.option_3, '4': self.option_4,
             '5': self.option_5, '6': self.option_6,
+            '7': self.option_7,
             'X': self.option_exit
         }
 
@@ -80,6 +81,13 @@ class App:
         print(self.menu_splited[6])
         player = self.helper.get_player_with_max_rebounds()
         print(f'{player.name} - {player.statistics.total_rebounds}\n')
+        request_input()
+
+    def option_7(self):
+        clear_console()
+        print(self.menu_splited[7])
+        player = self.helper.get_player_with_max_field_goal_percentage()
+        print(f'{player.name} - {player.statistics.field_goal_percentage}\n')
         request_input()
 
 
