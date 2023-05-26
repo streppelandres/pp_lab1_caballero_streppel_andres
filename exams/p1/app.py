@@ -46,6 +46,7 @@ class App:
         clear_console()
         print(player.name)
         print(player.statistics)
+        self.helper.save_player_stats_to_csv(player, f'player_stats_{player.name.lower().replace(" ", "_")}')
         request_input()
 
     def option_3(self):
