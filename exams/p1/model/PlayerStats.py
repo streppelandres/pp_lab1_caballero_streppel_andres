@@ -1,2 +1,0 @@
-class PlayerStats:
-    pass
