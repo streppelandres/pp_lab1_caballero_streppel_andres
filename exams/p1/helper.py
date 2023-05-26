@@ -42,3 +42,8 @@ class Helper:
     
     def get_player_with_max_field_goal_percentage(self) -> Player:
         return self.__get_player_with_max_stat_attr('field_goal_percentage')
+    
+    def get_player_with_max_total_assists(self) -> Player:
+        return self.__get_player_with_max_stat_attr('total_assists')
+    
+    
