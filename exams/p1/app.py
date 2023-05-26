@@ -17,7 +17,8 @@ class App:
         self.menu_splited = self.menu.splitlines()
         self.options = {
             '1': self.option_1, '2': self.option_2,
-            '3': self.option_3, 'X': self.option_exit
+            '3': self.option_3, '4': self.option_4,
+            'X': self.option_exit
         }
 
     def start(self):
@@ -56,6 +57,14 @@ class App:
         player_name = request_string('Ingrese el nombre del jugador a buscar:\n', [p.name for p in self.helper.players], 'Por favor, ingrese un nombre valido:\n')
         print('\n'.join(list(filter(lambda p : p.name.lower() == player_name.lower(), self.helper.players))[0].archivements))
         request_input()
+
+    def option_4(self):
+        clear_console()
+        print(self.menu_splited[4])
+        print(f'Promedio del equipo: {format(self.helper.get_team_average_point_per_match(), ".2f")}')
+        print(''.join([f'{player.name} - {player.statistics.average_points_per_game}\n' for player in sorted(self.helper.players, key = lambda p : p.name)]))
+        request_input()
+
 
     def option_exit(self):
         print('Cyaaa 👋')

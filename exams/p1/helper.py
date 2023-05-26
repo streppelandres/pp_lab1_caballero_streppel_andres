@@ -23,3 +23,6 @@ class Helper:
                     ps.average_rebounds_per_game, ps.total_assists, ps.average_assists_per_game, ps.total_steals, ps.total_blocks,
                     ps.field_goal_percentage, ps.free_throw_percentage, ps.three_point_percentage]
         csv_utils.save_csv(self.__CSV_PATH, file_name, [csv_head] + [csv_body])
+    
+    def get_team_average_point_per_match(self):
+        return sum([player.statistics.average_points_per_game for player in self.players]) / len(self.players)
