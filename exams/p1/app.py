@@ -18,7 +18,7 @@ class App:
         self.options = {
             '1': self.option_1, '2': self.option_2,
             '3': self.option_3, '4': self.option_4,
-            '5': self.option_5,
+            '5': self.option_5, '6': self.option_6,
             'X': self.option_exit
         }
 
@@ -72,7 +72,14 @@ class App:
         clear_console()
         print(self.menu_splited[5])
         player_name = self.__request_player_by_name()
-        print(f'{player_name} {self.helper.is_hall_of_fame_player_by_name(player_name) and "es" or "no es"} miembro del salón de la fama')
+        print(f'{player_name.capitalize()} {self.helper.is_hall_of_fame_player_by_name(player_name) and "es" or "no es"} miembro del salón de la fama')
+        request_input()
+
+    def option_6(self):
+        clear_console()
+        print(self.menu_splited[6])
+        player = self.helper.get_player_with_max_rebounds()
+        print(f'{player.name} - {player.statistics.total_rebounds}\n')
         request_input()
 
 

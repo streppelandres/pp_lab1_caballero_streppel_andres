@@ -29,8 +29,10 @@ class Helper:
         return sum([player.statistics.average_points_per_game for player in self.players]) / len(self.players)
     
     def get_player_archivements_by_name(self, player_name:str) -> list:
-        return list(filter(lambda p : p.name.lower() == player_name.lower(), self.players))[0].archivements
+        return list(filter(lambda p : p.name.lower() == str(player_name).lower(), self.players))[0].archivements
     
     def is_hall_of_fame_player_by_name(self, player_name:str) -> bool:
         return Helper.__HALL_FAME_MEMBER_ARCHIVEMENT in self.get_player_archivements_by_name(player_name)
-    
+
+    def get_player_with_max_rebounds(self) -> Player:
+        return max(self.players, key = lambda player : player.statistics.total_rebounds)
