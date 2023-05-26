@@ -43,7 +43,7 @@ def request_int_in_range(message:str, range_start:int, range_end:int, retry_mess
     request_int(message, retry_message)
 
 # TODO: Hacer otro que sea con Regex
-def request_string(message:str, valid_words:list, retry_message:str='Please, try again') -> bool:
+def request_string(message:str, valid_words:list, retry_message:str='Please, try again') -> str:
     '''
     Recursively requests an string until it is a valid word
         message: Display text

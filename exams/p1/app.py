@@ -1,4 +1,4 @@
-from utilities.console.console_utils import clear_console, request_input, request_int_in_range, print_elements_in_str, print_json
+from utilities.console.console_utils import clear_console, request_input, request_int_in_range, print_elements_in_str, print_json, request_string
 from config.parser import load_config
 from helper import Helper
 
@@ -52,6 +52,9 @@ class App:
     def option_3(self):
         clear_console()
         print(self.menu_splited[3])
+        print(''.join([f'{player.name}\n' for player in self.helper.players]))
+        player_name = request_string('Ingrese el nombre del jugador a buscar:\n', [p.name for p in self.helper.players], 'Por favor, ingrese un nombre valido:\n')
+        print('\n'.join(list(filter(lambda p : p.name.lower() == player_name.lower(), self.helper.players))[0].archivements))
         request_input()
 
     def option_exit(self):
