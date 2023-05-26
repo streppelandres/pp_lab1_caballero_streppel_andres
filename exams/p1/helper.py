@@ -8,6 +8,7 @@ from utilities.files.csv import csv_utils
 class Helper:
     __JSON_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), './_data'))
     __CSV_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), './_tmp'))
+    __HALL_FAME_MEMBER_ARCHIVEMENT = 'Miembro del Salon de la Fama del Baloncesto'
 
     players: list
 
@@ -24,5 +25,12 @@ class Helper:
                     ps.field_goal_percentage, ps.free_throw_percentage, ps.three_point_percentage]
         csv_utils.save_csv(self.__CSV_PATH, file_name, [csv_head] + [csv_body])
     
-    def get_team_average_point_per_match(self):
+    def get_team_average_point_per_match(self) -> float:
         return sum([player.statistics.average_points_per_game for player in self.players]) / len(self.players)
+    
+    def get_player_archivements_by_name(self, player_name:str) -> list:
+        return list(filter(lambda p : p.name.lower() == player_name.lower(), self.players))[0].archivements
+    
+    def is_hall_of_fame_player_by_name(self, player_name:str) -> bool:
+        return Helper.__HALL_FAME_MEMBER_ARCHIVEMENT in self.get_player_archivements_by_name(player_name)
+    

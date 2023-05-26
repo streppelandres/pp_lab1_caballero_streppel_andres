@@ -18,6 +18,7 @@ class App:
         self.options = {
             '1': self.option_1, '2': self.option_2,
             '3': self.option_3, '4': self.option_4,
+            '5': self.option_5,
             'X': self.option_exit
         }
 
@@ -31,6 +32,10 @@ class App:
                 clear_console()
                 print('Opción incorrecta, vuelva a intentar\n')
                 request_input()
+
+    def __request_player_by_name(self):
+        print(''.join([f'{player.name}\n' for player in self.helper.players]))
+        return request_string('Ingrese el nombre del jugador a buscar:\n', [p.name for p in self.helper.players], 'Por favor, ingrese un nombre valido:\n')
 
     def option_1(self):
         clear_console()
@@ -53,9 +58,7 @@ class App:
     def option_3(self):
         clear_console()
         print(self.menu_splited[3])
-        print(''.join([f'{player.name}\n' for player in self.helper.players]))
-        player_name = request_string('Ingrese el nombre del jugador a buscar:\n', [p.name for p in self.helper.players], 'Por favor, ingrese un nombre valido:\n')
-        print('\n'.join(list(filter(lambda p : p.name.lower() == player_name.lower(), self.helper.players))[0].archivements))
+        print('\n'.join(self.helper.get_player_archivements_by_name(self.__request_player_by_name())))
         request_input()
 
     def option_4(self):
@@ -63,6 +66,13 @@ class App:
         print(self.menu_splited[4])
         print(f'Promedio del equipo: {format(self.helper.get_team_average_point_per_match(), ".2f")}')
         print(''.join([f'{player.name} - {player.statistics.average_points_per_game}\n' for player in sorted(self.helper.players, key = lambda p : p.name)]))
+        request_input()
+
+    def option_5(self):
+        clear_console()
+        print(self.menu_splited[5])
+        player_name = self.__request_player_by_name()
+        print(f'{player_name} {self.helper.is_hall_of_fame_player_by_name(player_name) and "es" or "no es"} miembro del salón de la fama')
         request_input()
 
 
