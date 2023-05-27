@@ -25,6 +25,7 @@ class App:
             '11': self.option_11, '12': self.option_12,
             '13': self.option_13, '14': self.option_14,
             '15': self.option_15, '16': self.option_16,
+            '17': self.option_17,
             'X': self.option_exit
         }
 
@@ -123,6 +124,9 @@ class App:
         print(f'Jugador con más logros: {player.name}, cantidad: {len(player.archivements)}')
         print(f'Logros:')
         print('\n'.join(player.archivements))
+    
+    def option_17(self):
+        self.__print_playeres_with_greater_stat_attr_than_value('Ingrese un porcentaje de triples:', 'three_point_percentage')
 
     def option_exit(self):
         print('Cyaaa 👋')
