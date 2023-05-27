@@ -34,13 +34,14 @@ class App:
             option = input(self.menu + '\n').upper()
             clear_console()
             if option in self.options:
+                self.__print_menu_option(option)
                 self.options[option]()
             else:
                 print('Opción incorrecta, vuelva a intentar\n')
             request_input()
 
-    def __print_menu_option(self, option_number:int):
-        print(self.menu_splited[option_number] + '\n')
+    def __print_menu_option(self, option_index:str):
+        print(self.menu_splited[option_index.isnumeric() and int(option_index) or len(self.menu_splited) - 1] + '\n')
 
     def __request_player_by_name(self) -> None:
         print(''.join([f'{player.name}\n' for player in self.helper.players]))
@@ -60,11 +61,9 @@ class App:
         print(f'{player.name} - {getattr(player.statistics, attr_name)}\n')
 
     def option_1(self):
-        self.__print_menu_option(1)
         print(''.join([f'{player.name} - {player.position}\n' for player in self.helper.players]))
 
     def option_2(self):
-        self.__print_menu_option(2)
         players = [f'{i} - {player.name} - {player.position}\n' for i, player in enumerate(self.helper.players)]
         print(''.join(players))
         player = self.helper.players[request_int_in_range('Ingrese un indice para poder ver sus estadísticas:\n', 0, len(players))]
@@ -74,57 +73,44 @@ class App:
         self.helper.save_player_stats_to_csv(player, f'player_stats_{player.name.lower().replace(" ", "_")}')
 
     def option_3(self):
-        self.__print_menu_option(3)
         print('\n'.join(self.helper.get_player_archivements_by_name(self.__request_player_by_name())))
 
     def option_4(self):
-        self.__print_menu_option(4)
         print(f'Promedio del equipo: {format(Helper.get_team_average_stat_by_attr(self.helper.players, "average_points_per_game"), ".2f")}')
         print(''.join([f'{player.name} - {player.statistics.average_points_per_game}\n' for player in sorted(self.helper.players, key = lambda p : p.name)]))
 
     def option_5(self):
-        self.__print_menu_option(5)
         player_name = self.__request_player_by_name()
         print(f'{player_name.capitalize()} {self.helper.is_hall_of_fame_player_by_name(player_name) and "es" or "no es"} miembro del salón de la fama')
 
     def option_6(self):
-        self.__print_menu_option(6)
         self.__print_player_with_max_stat_attr('total_rebounds')
 
     def option_7(self):
-        self.__print_menu_option(7)
         self.__print_player_with_max_stat_attr('field_goal_percentage')
 
     def option_8(self):
-        self.__print_menu_option(8)
         self.__print_player_with_max_stat_attr('total_assists')
 
     def option_9(self):
-        self.__print_menu_option(9)
         self.__print_playeres_with_greater_stat_attr_than_value('Ingrese un promedio de puntos por partido:', 'average_points_per_game')
 
     def option_10(self):
-        self.__print_menu_option(10)
         self.__print_playeres_with_greater_stat_attr_than_value('Ingrese un promedio de rebotes por partido:', 'average_rebounds_per_game')
 
     def option_11(self):
-        self.__print_menu_option(11)
         self.__print_playeres_with_greater_stat_attr_than_value('Ingrese un promedio de asistencias por partido:', 'average_assists_per_game')
     
     def option_12(self):
-        self.__print_menu_option(12)
         self.__print_player_with_max_stat_attr('total_steals')
 
     def option_13(self):
-        self.__print_menu_option(13)
         self.__print_player_with_max_stat_attr('total_blocks')
     
     def option_14(self):
-        self.__print_menu_option(14)
         self.__print_playeres_with_greater_stat_attr_than_value('Ingrese un porcentaje de tiros libres por partido:', 'free_throw_percentage')
     
     def option_15(self):
-        self.__print_menu_option(15)
         player = self.helper.get_player_with_min_stat_attr('average_points_per_game')
         players_copy = copy.deepcopy(self.helper.players)
         players_copy.remove(player)
@@ -133,7 +119,6 @@ class App:
         print(f'Promedio del equipo sin el jugador con el promedio más bajo: {format(average, ".2f")}')
     
     def option_16(self):
-        self.__print_menu_option(16)
         player = self.helper.get_player_with_more_archivements()
         print(f'Jugador con más logros: {player.name}, cantidad: {len(player.archivements)}')
         print(f'Logros:')
