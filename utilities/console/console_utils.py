@@ -32,7 +32,7 @@ def request_int(message:str, retry_message:str='Please, try again') -> int:
     if n.isnumeric():
         return int(n)
     print(f'\n{retry_message}\n')
-    request_int(message, retry_message)
+    return request_int(message, retry_message)
 
 # TODO: Pasarlo a regex si no el profe se enoja
 def request_int_in_range(message:str, range_start:int, range_end:int, retry_message:str='Please, try again') -> int:
@@ -40,7 +40,7 @@ def request_int_in_range(message:str, range_start:int, range_end:int, retry_mess
     if n.isnumeric() and int(n) >= range_start and int(n) <= range_end:
         return int(n)
     print(f'\n{retry_message}\n')
-    request_int(message, retry_message)
+    return request_int_in_range(message, range_start, range_end, retry_message)
 
 # TODO: Hacer otro que sea con Regex
 def request_string(message:str, valid_words:list, retry_message:str='Please, try again') -> str:
@@ -55,7 +55,7 @@ def request_string(message:str, valid_words:list, retry_message:str='Please, try
     if word in [w.lower() for w in valid_words]:
         return word
     print(retry_message)
-    request_string(message, valid_words, retry_message)
+    return request_string(message, valid_words, retry_message)
 
 def print_elements_in_str(elements:list) -> None:
     '''

@@ -73,7 +73,7 @@ class App:
                 attr_name: Stat attribute name
                 sort_attr: Attribute used to sort the results
         '''
-        greater_than = request_int(f'{message}:\n', 'Por favor, ingrese un número válido')
+        greater_than = request_int(f'{message}\n', 'Por favor, ingrese un número válido')
         players = self.helper.get_playeres_with_greater_stat_attr_than_value(attr_name, greater_than)
         if players:
             print(f'Jugadores con {attr_name.replace("_", " ")} mayor a {greater_than}:\n')
