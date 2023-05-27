@@ -15,7 +15,7 @@ class Helper:
     def __init__(self) -> None:
         self.players = adapt_players(json_utils.read_json(self.__JSON_PATH, 'dt')['jugadores'])
     
-    def __get_player_with_max_stat_attr(self, attr_name:str) -> Player:
+    def get_player_with_max_stat_attr(self, attr_name:str) -> Player:
         return max(self.players, key = lambda player : getattr(player.statistics, attr_name))
 
     def get_playeres_with_greater_stat_attr_than_value(self, attr_name:str, value:float) -> list:
@@ -39,16 +39,4 @@ class Helper:
     
     def is_hall_of_fame_player_by_name(self, player_name:str) -> bool:
         return Helper.__HALL_FAME_MEMBER_ARCHIVEMENT in self.get_player_archivements_by_name(player_name)
-
-    def get_player_with_max_rebounds(self) -> Player:
-        return self.__get_player_with_max_stat_attr('total_rebounds')
-    
-    def get_player_with_max_field_goal_percentage(self) -> Player:
-        return self.__get_player_with_max_stat_attr('field_goal_percentage')
-    
-    def get_player_with_max_total_assists(self) -> Player:
-        return self.__get_player_with_max_stat_attr('total_assists')
-    
-    def get_player_with_max_total_steals(self) -> Player:
-        return self.__get_player_with_max_stat_attr('total_steals')
     

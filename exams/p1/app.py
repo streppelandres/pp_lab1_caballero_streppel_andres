@@ -36,11 +36,11 @@ class App:
                 print('Opción incorrecta, vuelva a intentar\n')
                 request_input()
 
-    def __request_player_by_name(self):
+    def __request_player_by_name(self) -> None:
         print(''.join([f'{player.name}\n' for player in self.helper.players]))
         return request_string('Ingrese el nombre del jugador a buscar:\n', [p.name for p in self.helper.players], 'Por favor, ingrese un nombre valido:\n')
 
-    def __print_playeres_with_greater_stat_attr_than_value(self, message:str, attr_name:str):
+    def __print_playeres_with_greater_stat_attr_than_value(self, message:str, attr_name:str) -> None:
         greater_than = request_int(f'{message}:\n', 'Por favor, ingrese un número válido')
         players = self.helper.get_playeres_with_greater_stat_attr_than_value(attr_name, greater_than)
         if players:
@@ -48,6 +48,10 @@ class App:
             print('\n'.join([f'{player.name} - {getattr(player.statistics, attr_name)}' for player in players]))
         else:
             print(f'No se encontraron jugadores con {attr_name.replace("_", " ")} mayor a {greater_than}\n')
+    
+    def __show_player_with_max_stat_attr(self, attr_name:str) -> None:
+        player = self.helper.get_player_with_max_stat_attr(attr_name)
+        print(f'{player.name} - {getattr(player.statistics, attr_name)}\n')
 
     def option_1(self):
         clear_console()
@@ -90,22 +94,19 @@ class App:
     def option_6(self):
         clear_console()
         print(self.menu_splited[6])
-        player = self.helper.get_player_with_max_rebounds()
-        print(f'{player.name} - {player.statistics.total_rebounds}\n')
+        self.__show_player_with_max_stat_attr('total_rebounds')
         request_input()
 
     def option_7(self):
         clear_console()
         print(self.menu_splited[7])
-        player = self.helper.get_player_with_max_field_goal_percentage()
-        print(f'{player.name} - {player.statistics.field_goal_percentage}\n')
+        self.__show_player_with_max_stat_attr('field_goal_percentage')
         request_input()
 
     def option_8(self):
         clear_console()
         print(self.menu_splited[8])
-        player = self.helper.get_player_with_max_total_assists()
-        print(f'{player.name} - {player.statistics.total_assists}\n')
+        self.__show_player_with_max_stat_attr('total_assists')
         request_input()
 
     def option_9(self):
@@ -129,8 +130,7 @@ class App:
     def option_12(self):
         clear_console()
         print(self.menu_splited[12])
-        player = self.helper.get_player_with_max_total_steals()
-        print(f'{player.name} - {player.statistics.total_steals}\n')
+        self.__show_player_with_max_stat_attr('total_steals')
         request_input()
 
 
