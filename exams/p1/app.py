@@ -22,6 +22,7 @@ class App:
             '7': self.option_7, '8': self.option_8,
             '9': self.option_9, '10': self.option_10,
             '11': self.option_11, '12': self.option_12,
+            '13': self.option_13,
             'X': self.option_exit
         }
 
@@ -131,6 +132,12 @@ class App:
         clear_console()
         print(self.menu_splited[12])
         self.__show_player_with_max_stat_attr('total_steals')
+        request_input()
+
+    def option_13(self):
+        clear_console()
+        print(self.menu_splited[13])
+        self.__show_player_with_max_stat_attr('total_blocks')
         request_input()
 
 
