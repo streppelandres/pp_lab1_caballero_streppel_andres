@@ -51,3 +51,7 @@ class Helper:
     
     def get_playeres_with_greater_average_points_per_game_than_value(self, value:float) -> list:
         return self.__get_playeres_with_greater_stat_attr_than_value('average_points_per_game', value)
+    
+    def get_playeres_with_greater_average_rebounds_per_game_than_value(self, value:float) -> list:
+        return self.__get_playeres_with_greater_stat_attr_than_value('average_rebounds_per_game', value)
+    
