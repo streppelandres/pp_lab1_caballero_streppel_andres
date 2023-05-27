@@ -21,6 +21,7 @@ class App:
             '5': self.option_5, '6': self.option_6,
             '7': self.option_7, '8': self.option_8,
             '9': self.option_9, '10': self.option_10,
+            '11': self.option_11,
             'X': self.option_exit
         }
 
@@ -120,6 +121,18 @@ class App:
             print('\n'.join([f'{player.name} - {player.statistics.average_rebounds_per_game}' for player in players]))
         else:
             print(f'No se encontraron jugadores con promedio de rebotes por partido mayor a {greater_than}\n')
+        request_input()
+
+    def option_11(self): # FIXME: Código un toque repetido, fijate de hacer algo más generico
+        clear_console()
+        print(self.menu_splited[11])
+        greater_than = request_int('Ingrese un promedio de asistencias por partido:\n', 'Por favor, ingrese un número válido')
+        players = self.helper.get_playeres_with_greater_average_assists_per_game_than_value(greater_than)
+        if players:
+            print(f'Jugadores con promedio de asistencias por partido mayor a {greater_than}:\n')
+            print('\n'.join([f'{player.name} - {player.statistics.average_assists_per_game}' for player in players]))
+        else:
+            print(f'No se encontraron jugadores con promedio de asistencias por partido mayor a {greater_than}\n')
         request_input()
 
 
