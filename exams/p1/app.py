@@ -26,6 +26,7 @@ class App:
             '13': self.option_13, '14': self.option_14,
             '15': self.option_15, '16': self.option_16,
             '17': self.option_17, '18': self.option_18,
+            '19': self.option_19, '20': self.option_20,
             'X': self.option_exit
         }
 
@@ -48,12 +49,12 @@ class App:
         print(''.join([f'{player.name}\n' for player in self.helper.players]))
         return request_string('Ingrese el nombre del jugador a buscar:\n', [p.name for p in self.helper.players], 'Por favor, ingrese un nombre valido:\n')
 
-    def __print_playeres_with_greater_stat_attr_than_value(self, message:str, attr_name:str) -> None:
+    def __print_playeres_with_greater_stat_attr_than_value(self, message:str, attr_name:str, sort_attr:str=None) -> None:
         greater_than = request_int(f'{message}:\n', 'Por favor, ingrese un número válido')
         players = self.helper.get_playeres_with_greater_stat_attr_than_value(attr_name, greater_than)
         if players:
             print(f'Jugadores con {attr_name.replace("_", " ")} mayor a {greater_than}:\n')
-            print('\n'.join([f'{player.name} - {getattr(player.statistics, attr_name)}' for player in players]))
+            print('\n'.join([f'{player.name}{sort_attr == None and " " or " [" + getattr(player, sort_attr) + "]"}- {getattr(player.statistics, attr_name)}' for player in (sort_attr == None and players or sorted(players, key = lambda p : getattr(p, sort_attr)))]))
         else:
             print(f'No se encontraron jugadores con {attr_name.replace("_", " ")} mayor a {greater_than}\n')
     
@@ -130,6 +131,18 @@ class App:
 
     def option_18(self):
         self.__print_player_with_max_stat_attr('seasons')
+    
+    def option_19(self):
+        self.__print_playeres_with_greater_stat_attr_than_value('Ingrese un porcentaje de tiros de campo:', 'field_goal_percentage', sort_attr='position')
+    
+    def option_20(self):
+        ranking = self.helper.get_ranking()
+
+        for p in ranking:
+            v = [str(v) for v in ranking[p].values()]
+            print(f'{p}, puntos: {v[0]}, rebotes: {v[1]}, asistencias: {v[2]}, robos: {v[3]}')
+        
+        self.helper.save_ranking_to_csv(ranking, '23_bonus_ranking')
 
     def option_exit(self):
         print('Cyaaa 👋')

@@ -45,4 +45,26 @@ class Helper:
         return Helper.__HALL_FAME_MEMBER_ARCHIVEMENT in self.get_player_archivements_by_name(player_name)
     
     def get_player_with_more_archivements(self) -> Player:
-        return max(self.players, key = lambda p : len(p.archivements))
+        return max(self.players, key = lambda player : len(player.archivements))
+
+    def __sort_players_by_stat_attr(self, attr_name:str, reverse:bool=False) -> list:
+        return sorted(self.players, key = lambda player : getattr(player.statistics, attr_name), reverse=reverse)
+
+    def get_ranking(self) -> str:
+        ranking = {}
+        for attr in ['total_points', 'total_rebounds', 'total_assists', 'total_steals']:
+            for i, p in enumerate(self.__sort_players_by_stat_attr(attr, True)):
+                # Si no existe la key del jugador, lo crea
+                if not p.name in ranking.keys():
+                    ranking[p.name] = {}
+                # Si no existe la key del attr en la key del jugador, lo crea
+                if not attr in ranking[p.name].keys():
+                    ranking[p.name][attr] = 0
+                # El index sería la posición en el ranking del jugador con ese attr
+                ranking[p.name][attr] = i + 1
+        return ranking
+
+    def save_ranking_to_csv(self, ranking:dict, file_name:str) -> None:
+        csv_head = ['player', 'points', 'rebounds', 'assist', 'steals']
+        csv_body = [[p] + list(ranking[p].values()) for p in ranking]
+        csv_utils.save_csv(self.__CSV_PATH, file_name, [csv_head] + csv_body)
