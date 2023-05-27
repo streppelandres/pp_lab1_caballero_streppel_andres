@@ -1,4 +1,4 @@
-from utilities.console.console_utils import clear_console, request_input, request_int_in_range, print_elements_in_str, print_json, request_string
+from utilities.console.console_utils import clear_console, request_input, request_int_in_range, request_string, request_int
 from config.parser import load_config
 from helper import Helper
 
@@ -20,6 +20,7 @@ class App:
             '3': self.option_3, '4': self.option_4,
             '5': self.option_5, '6': self.option_6,
             '7': self.option_7, '8': self.option_8,
+            '9': self.option_9,
             'X': self.option_exit
         }
 
@@ -95,6 +96,18 @@ class App:
         print(self.menu_splited[8])
         player = self.helper.get_player_with_max_total_assists()
         print(f'{player.name} - {player.statistics.total_assists}\n')
+        request_input()
+
+    def option_9(self):
+        clear_console()
+        print(self.menu_splited[9])
+        greater_than = request_int('Ingrese un promedio de puntos por partido:\n', 'Por favor, ingrese un número válido')
+        players = self.helper.get_playeres_with_greater_average_points_per_game_than_value(greater_than)
+        if players:
+            print(f'Jugadores con promedio de puntos por partido mayor a {greater_than}:\n')
+            print('\n'.join([f'{player.name} - {player.statistics.average_points_per_game}' for player in players]))
+        else:
+            print(f'No se encontraron jugadores con promedio de puntos por partido mayor a {greater_than}\n')
         request_input()
 
 
