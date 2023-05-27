@@ -18,7 +18,7 @@ class Helper:
     def __get_player_with_max_stat_attr(self, attr_name:str) -> Player:
         return max(self.players, key = lambda player : getattr(player.statistics, attr_name))
 
-    def __get_playeres_with_greater_stat_attr_than_value(self, attr_name:str, value:float) -> list:
+    def get_playeres_with_greater_stat_attr_than_value(self, attr_name:str, value:float) -> list:
         return list(filter(lambda player : getattr(player.statistics, attr_name) > value, self.players))
     
     def save_player_stats_to_csv(self, player:Player, file_name:str) -> bool:
@@ -51,13 +51,4 @@ class Helper:
     
     def get_player_with_max_total_steals(self) -> Player:
         return self.__get_player_with_max_stat_attr('total_steals')
-    
-    def get_playeres_with_greater_average_points_per_game_than_value(self, value:float) -> list:
-        return self.__get_playeres_with_greater_stat_attr_than_value('average_points_per_game', value)
-    
-    def get_playeres_with_greater_average_rebounds_per_game_than_value(self, value:float) -> list:
-        return self.__get_playeres_with_greater_stat_attr_than_value('average_rebounds_per_game', value)
-    
-    def get_playeres_with_greater_average_assists_per_game_than_value(self, value:float) -> list:
-        return self.__get_playeres_with_greater_stat_attr_than_value('average_assists_per_game', value)
     

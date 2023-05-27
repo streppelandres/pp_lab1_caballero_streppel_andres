@@ -40,6 +40,15 @@ class App:
         print(''.join([f'{player.name}\n' for player in self.helper.players]))
         return request_string('Ingrese el nombre del jugador a buscar:\n', [p.name for p in self.helper.players], 'Por favor, ingrese un nombre valido:\n')
 
+    def __print_playeres_with_greater_stat_attr_than_value(self, message:str, attr_name:str):
+        greater_than = request_int(f'{message}:\n', 'Por favor, ingrese un número válido')
+        players = self.helper.get_playeres_with_greater_stat_attr_than_value(attr_name, greater_than)
+        if players:
+            print(f'Jugadores con {attr_name.replace("_", " ")} mayor a {greater_than}:\n')
+            print('\n'.join([f'{player.name} - {getattr(player.statistics, attr_name)}' for player in players]))
+        else:
+            print(f'No se encontraron jugadores con {attr_name.replace("_", " ")} mayor a {greater_than}\n')
+
     def option_1(self):
         clear_console()
         print(self.menu_splited[1])
@@ -99,40 +108,22 @@ class App:
         print(f'{player.name} - {player.statistics.total_assists}\n')
         request_input()
 
-    def option_9(self): # FIXME: Código un toque repetido, fijate de hacer algo más generico
+    def option_9(self):
         clear_console()
         print(self.menu_splited[9])
-        greater_than = request_int('Ingrese un promedio de puntos por partido:\n', 'Por favor, ingrese un número válido')
-        players = self.helper.get_playeres_with_greater_average_points_per_game_than_value(greater_than)
-        if players:
-            print(f'Jugadores con promedio de puntos por partido mayor a {greater_than}:\n')
-            print('\n'.join([f'{player.name} - {player.statistics.average_points_per_game}' for player in players]))
-        else:
-            print(f'No se encontraron jugadores con promedio de puntos por partido mayor a {greater_than}\n')
+        self.__print_playeres_with_greater_stat_attr_than_value('Ingrese un promedio de puntos por partido:', 'average_points_per_game')
         request_input()
 
-    def option_10(self): # FIXME: Código un toque repetido, fijate de hacer algo más generico
+    def option_10(self):
         clear_console()
         print(self.menu_splited[10])
-        greater_than = request_int('Ingrese un promedio de rebotes por partido:\n', 'Por favor, ingrese un número válido')
-        players = self.helper.get_playeres_with_greater_average_rebounds_per_game_than_value(greater_than)
-        if players:
-            print(f'Jugadores con promedio de rebotes por partido mayor a {greater_than}:\n')
-            print('\n'.join([f'{player.name} - {player.statistics.average_rebounds_per_game}' for player in players]))
-        else:
-            print(f'No se encontraron jugadores con promedio de rebotes por partido mayor a {greater_than}\n')
+        self.__print_playeres_with_greater_stat_attr_than_value('Ingrese un promedio de rebotes por partido:', 'average_rebounds_per_game')
         request_input()
 
-    def option_11(self): # FIXME: Código un toque repetido, fijate de hacer algo más generico
+    def option_11(self):
         clear_console()
         print(self.menu_splited[11])
-        greater_than = request_int('Ingrese un promedio de asistencias por partido:\n', 'Por favor, ingrese un número válido')
-        players = self.helper.get_playeres_with_greater_average_assists_per_game_than_value(greater_than)
-        if players:
-            print(f'Jugadores con promedio de asistencias por partido mayor a {greater_than}:\n')
-            print('\n'.join([f'{player.name} - {player.statistics.average_assists_per_game}' for player in players]))
-        else:
-            print(f'No se encontraron jugadores con promedio de asistencias por partido mayor a {greater_than}\n')
+        self.__print_playeres_with_greater_stat_attr_than_value('Ingrese un promedio de asistencias por partido:', 'average_assists_per_game')
         request_input()
     
     def option_12(self):
