@@ -1,3 +1,4 @@
+import copy
 from utilities.console.console_utils import clear_console, request_input, request_int_in_range, request_string, request_int
 from config.parser import load_config
 from helper import Helper
@@ -23,6 +24,7 @@ class App:
             '9': self.option_9, '10': self.option_10,
             '11': self.option_11, '12': self.option_12,
             '13': self.option_13, '14': self.option_14,
+            '15': self.option_15,
             'X': self.option_exit
         }
 
@@ -50,7 +52,7 @@ class App:
         else:
             print(f'No se encontraron jugadores con {attr_name.replace("_", " ")} mayor a {greater_than}\n')
     
-    def __show_player_with_max_stat_attr(self, attr_name:str) -> None:
+    def __print_player_with_max_stat_attr(self, attr_name:str) -> None:
         player = self.helper.get_player_with_max_stat_attr(attr_name)
         print(f'{player.name} - {getattr(player.statistics, attr_name)}\n')
 
@@ -81,7 +83,7 @@ class App:
     def option_4(self):
         clear_console()
         print(self.menu_splited[4])
-        print(f'Promedio del equipo: {format(self.helper.get_team_average_point_per_match(), ".2f")}')
+        print(f'Promedio del equipo: {format(Helper.get_team_average_stat_by_attr(self.helper.players, "average_points_per_game"), ".2f")}')
         print(''.join([f'{player.name} - {player.statistics.average_points_per_game}\n' for player in sorted(self.helper.players, key = lambda p : p.name)]))
         request_input()
 
@@ -95,19 +97,19 @@ class App:
     def option_6(self):
         clear_console()
         print(self.menu_splited[6])
-        self.__show_player_with_max_stat_attr('total_rebounds')
+        self.__print_player_with_max_stat_attr('total_rebounds')
         request_input()
 
     def option_7(self):
         clear_console()
         print(self.menu_splited[7])
-        self.__show_player_with_max_stat_attr('field_goal_percentage')
+        self.__print_player_with_max_stat_attr('field_goal_percentage')
         request_input()
 
     def option_8(self):
         clear_console()
         print(self.menu_splited[8])
-        self.__show_player_with_max_stat_attr('total_assists')
+        self.__print_player_with_max_stat_attr('total_assists')
         request_input()
 
     def option_9(self):
@@ -131,19 +133,30 @@ class App:
     def option_12(self):
         clear_console()
         print(self.menu_splited[12])
-        self.__show_player_with_max_stat_attr('total_steals')
+        self.__print_player_with_max_stat_attr('total_steals')
         request_input()
 
     def option_13(self):
         clear_console()
         print(self.menu_splited[13])
-        self.__show_player_with_max_stat_attr('total_blocks')
+        self.__print_player_with_max_stat_attr('total_blocks')
         request_input()
     
     def option_14(self):
         clear_console()
         print(self.menu_splited[14])
         self.__print_playeres_with_greater_stat_attr_than_value('Ingrese un porcentaje de tiros libres por partido:', 'free_throw_percentage')
+        request_input()
+    
+    def option_15(self):
+        clear_console()
+        print(self.menu_splited[15])
+        player = self.helper.get_player_with_min_stat_attr('average_points_per_game')
+        players_copy = copy.deepcopy(self.helper.players)
+        players_copy.remove(player)
+        average = Helper.get_team_average_stat_by_attr(players_copy, 'average_points_per_game')
+        print(f'Jugador con promedio más bajo: {player.name} - {player.statistics.average_points_per_game}')
+        print(f'Promedio del equipo sin el jugador con el promedio más bajo: {format(average, ".2f")}')
         request_input()
 
 

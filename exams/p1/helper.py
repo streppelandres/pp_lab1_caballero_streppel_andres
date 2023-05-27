@@ -17,7 +17,14 @@ class Helper:
     
     def get_player_with_max_stat_attr(self, attr_name:str) -> Player:
         return max(self.players, key = lambda player : getattr(player.statistics, attr_name))
+    
+    def get_player_with_min_stat_attr(self, attr_name:str) -> Player:
+        return min(self.players, key = lambda player : getattr(player.statistics, attr_name))
 
+    @staticmethod
+    def get_team_average_stat_by_attr(players:list, attr_name:str) -> float:
+        return sum(getattr(player.statistics, attr_name) for player in players) / len(players)
+    
     def get_playeres_with_greater_stat_attr_than_value(self, attr_name:str, value:float) -> list:
         return list(filter(lambda player : getattr(player.statistics, attr_name) > value, self.players))
     
@@ -31,12 +38,8 @@ class Helper:
                     ps.field_goal_percentage, ps.free_throw_percentage, ps.three_point_percentage]
         csv_utils.save_csv(self.__CSV_PATH, file_name, [csv_head] + [csv_body])
     
-    def get_team_average_point_per_match(self) -> float:
-        return sum([player.statistics.average_points_per_game for player in self.players]) / len(self.players)
-    
     def get_player_archivements_by_name(self, player_name:str) -> list:
         return list(filter(lambda p : p.name.lower() == str(player_name).lower(), self.players))[0].archivements
     
     def is_hall_of_fame_player_by_name(self, player_name:str) -> bool:
         return Helper.__HALL_FAME_MEMBER_ARCHIVEMENT in self.get_player_archivements_by_name(player_name)
-    
