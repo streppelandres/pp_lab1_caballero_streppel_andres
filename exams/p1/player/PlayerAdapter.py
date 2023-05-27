@@ -3,10 +3,18 @@ from player.PlayerStats import PlayerStats
 
 
 def adapt_players(players: list) -> list:
+    '''
+    Adapts JSON players to the Players class
+        returns: List of Players adapted
+    '''
     return [__adapt_player(player) for player in players]
 
 
 def __adapt_player(player: any) -> Player:
+    '''
+    Adapt JSON player to the Player class
+        returns: Player adapted
+    '''
     return Player(
         str(player['nombre']),
         str(player['posicion']),
@@ -16,6 +24,10 @@ def __adapt_player(player: any) -> Player:
 
 
 def __adapt_player_stats(stats: dict) -> PlayerStats:
+    '''
+    Adapts player JSON stats to PlayerStats class
+        returns: PlayerStats adapted
+    '''
     return PlayerStats(
         int(stats['temporadas']),
         int(stats['puntos_totales']),

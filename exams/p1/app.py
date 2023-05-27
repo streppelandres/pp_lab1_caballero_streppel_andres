@@ -7,12 +7,18 @@ JSON_DATA_PATH = './data/heroes.json'
 INI_CONFIG_PATH = './config/menu.ini'
 
 class App:
+    '''
+    A App class to hide spaghetti code and (try) avoid mixed responsibilities
+    '''
     helper: Helper
     menu: str
     menu_splited: list
     options: dict
 
     def __init__(self) -> None:
+        '''
+        App constructor, initialize helper, read menu options from config file and map the menu options
+        '''
         self.helper = Helper()
         self.menu = load_config(INI_CONFIG_PATH)['MENU']['es']
         self.menu_splited = self.menu.splitlines()
@@ -31,6 +37,9 @@ class App:
         }
 
     def start(self):
+        '''
+        Start function, with the inifinite loop wait for users inpu, shows the menu, and validate selected option
+        '''
         while True:
             clear_console()
             option = input(self.menu + '\n').upper()
@@ -43,13 +52,27 @@ class App:
             request_input()
 
     def __print_menu_option(self, option_index:str):
+        '''
+        Prints the selected menu option passed by param
+            option_index: User selected option
+        '''
         print(self.menu_splited[option_index.isnumeric() and int(option_index) or len(self.menu_splited) - 1] + '\n')
 
-    def __request_player_by_name(self) -> None:
+    def __request_player_by_name(self) -> str:
+        '''
+        Request a player name to the user, and validates if exist
+            returns The valid player name
+        '''
         print(''.join([f'{player.name}\n' for player in self.helper.players]))
         return request_string('Ingrese el nombre del jugador a buscar:\n', [p.name for p in self.helper.players], 'Por favor, ingrese un nombre valido:\n')
 
     def __print_playeres_with_greater_stat_attr_than_value(self, message:str, attr_name:str, sort_attr:str=None) -> None:
+        '''
+            Semi-generic function who request a number to after find and print players with greater stat attribute than passed by param
+                message: Message to display in console
+                attr_name: Stat attribute name
+                sort_attr: Attribute used to sort the results
+        '''
         greater_than = request_int(f'{message}:\n', 'Por favor, ingrese un número válido')
         players = self.helper.get_playeres_with_greater_stat_attr_than_value(attr_name, greater_than)
         if players:
@@ -59,6 +82,10 @@ class App:
             print(f'No se encontraron jugadores con {attr_name.replace("_", " ")} mayor a {greater_than}\n')
     
     def __print_player_with_max_stat_attr(self, attr_name:str) -> None:
+        '''
+            Prints player with the max attr passed by param
+                attr_name: Stat attribute to find the max
+        '''
         player = self.helper.get_player_with_max_stat_attr(attr_name)
         print(f'{player.name} - {getattr(player.statistics, attr_name)}\n')
 
