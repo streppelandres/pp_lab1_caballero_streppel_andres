@@ -25,7 +25,7 @@ class App:
             '11': self.option_11, '12': self.option_12,
             '13': self.option_13, '14': self.option_14,
             '15': self.option_15, '16': self.option_16,
-            '17': self.option_17,
+            '17': self.option_17, '18': self.option_18,
             'X': self.option_exit
         }
 
@@ -127,6 +127,9 @@ class App:
     
     def option_17(self):
         self.__print_playeres_with_greater_stat_attr_than_value('Ingrese un porcentaje de triples:', 'three_point_percentage')
+
+    def option_18(self):
+        self.__print_player_with_max_stat_attr('seasons')
 
     def option_exit(self):
         print('Cyaaa 👋')
