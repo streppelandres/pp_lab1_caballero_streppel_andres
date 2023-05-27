@@ -22,7 +22,7 @@ class App:
             '7': self.option_7, '8': self.option_8,
             '9': self.option_9, '10': self.option_10,
             '11': self.option_11, '12': self.option_12,
-            '13': self.option_13,
+            '13': self.option_13, '14': self.option_14,
             'X': self.option_exit
         }
 
@@ -138,6 +138,12 @@ class App:
         clear_console()
         print(self.menu_splited[13])
         self.__show_player_with_max_stat_attr('total_blocks')
+        request_input()
+    
+    def option_14(self):
+        clear_console()
+        print(self.menu_splited[14])
+        self.__print_playeres_with_greater_stat_attr_than_value('Ingrese un porcentaje de tiros libres por partido:', 'free_throw_percentage')
         request_input()
 
 
