@@ -49,6 +49,9 @@ class Helper:
     def get_player_with_max_total_assists(self) -> Player:
         return self.__get_player_with_max_stat_attr('total_assists')
     
+    def get_player_with_max_total_steals(self) -> Player:
+        return self.__get_player_with_max_stat_attr('total_steals')
+    
     def get_playeres_with_greater_average_points_per_game_than_value(self, value:float) -> list:
         return self.__get_playeres_with_greater_stat_attr_than_value('average_points_per_game', value)
     

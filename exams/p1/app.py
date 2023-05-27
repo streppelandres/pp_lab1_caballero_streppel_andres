@@ -21,7 +21,7 @@ class App:
             '5': self.option_5, '6': self.option_6,
             '7': self.option_7, '8': self.option_8,
             '9': self.option_9, '10': self.option_10,
-            '11': self.option_11,
+            '11': self.option_11, '12': self.option_12,
             'X': self.option_exit
         }
 
@@ -133,6 +133,13 @@ class App:
             print('\n'.join([f'{player.name} - {player.statistics.average_assists_per_game}' for player in players]))
         else:
             print(f'No se encontraron jugadores con promedio de asistencias por partido mayor a {greater_than}\n')
+        request_input()
+    
+    def option_12(self):
+        clear_console()
+        print(self.menu_splited[12])
+        player = self.helper.get_player_with_max_total_steals()
+        print(f'{player.name} - {player.statistics.total_steals}\n')
         request_input()
 
 
