@@ -24,7 +24,7 @@ class App:
             '9': self.option_9, '10': self.option_10,
             '11': self.option_11, '12': self.option_12,
             '13': self.option_13, '14': self.option_14,
-            '15': self.option_15,
+            '15': self.option_15, '16': self.option_16,
             'X': self.option_exit
         }
 
@@ -157,6 +157,15 @@ class App:
         average = Helper.get_team_average_stat_by_attr(players_copy, 'average_points_per_game')
         print(f'Jugador con promedio más bajo: {player.name} - {player.statistics.average_points_per_game}')
         print(f'Promedio del equipo sin el jugador con el promedio más bajo: {format(average, ".2f")}')
+        request_input()
+    
+    def option_16(self):
+        clear_console()
+        print(self.menu_splited[16])
+        player = self.helper.get_player_with_more_archivements()
+        print(f'Jugador con más logros: {player.name}, cantidad: {len(player.archivements)}')
+        print(f'Logros:')
+        print('\n'.join(player.archivements))
         request_input()
 
 

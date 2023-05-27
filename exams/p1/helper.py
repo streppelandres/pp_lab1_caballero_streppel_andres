@@ -43,3 +43,6 @@ class Helper:
     
     def is_hall_of_fame_player_by_name(self, player_name:str) -> bool:
         return Helper.__HALL_FAME_MEMBER_ARCHIVEMENT in self.get_player_archivements_by_name(player_name)
+    
+    def get_player_with_more_archivements(self) -> Player:
+        return max(self.players, key = lambda p : len(p.archivements))
