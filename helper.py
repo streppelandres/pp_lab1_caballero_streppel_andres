@@ -12,6 +12,7 @@ class Helper:
     __JSON_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), './_data'))
     __CSV_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), './_tmp'))
     __HALL_FAME_MEMBER_ARCHIVEMENT = 'Miembro del Salon de la Fama del Baloncesto'
+    __ALL_STAR_ARCHIVEMENT = 'All-Star'
 
     players: list
 
@@ -147,3 +148,19 @@ class Helper:
     def get_grouped_quantity_of_players_by_key(self, key):
         grouped_players = self.__get_grouped_players_by_key(key)
         return {k: len(grouped_players[k]) for k in grouped_players}
+
+    def get_all_star_players(self):
+        all_star_players = []
+
+        # TODO: Hacelo en modo Python
+        for player in self.players:
+            for archivement in player.archivements:
+                # FIXME: Esto con expresiones regulares estaría mejor
+                if self.__ALL_STAR_ARCHIVEMENT in archivement:
+                    all_star_players.append({
+                        "name": player.name,
+                        "quantity": int(archivement.split(' ')[0])
+                    })
+                    break
+        
+        return sorted(all_star_players, key=lambda p : p['quantity'], reverse=True)
