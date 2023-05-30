@@ -34,7 +34,7 @@ class App:
             '17': self.option_17, '18': self.option_18,
             '19': self.option_19, '20': self.option_20,
             '21': self.option_21, '22': self.option_22,
-            '23': self.option_23,
+            '23': self.option_23, '24': self.option_24,
             'X': self.option_exit
         }
 
@@ -191,6 +191,10 @@ class App:
                 f'Mayor cantidad de {best["text"]}: {best["name"]} ({best["stat"]})'
             )
         print('\n'.join(r))
+
+    def option_24(self):
+        best_player = self.helper.get_best_player()
+        print(f'El jugador con el mayor de todas sus estadisticas sumadas es: {best_player.name}')
 
     def option_exit(self):
         print('Cyaaa 👋')

@@ -1,6 +1,7 @@
 import os
 from player.PlayerAdapter import adapt_players
 from player.Player import Player
+from player.PlayerStats import PlayerStats
 from utilities.files.json import json_utils
 from utilities.files.csv import csv_utils
 
@@ -189,3 +190,7 @@ class Helper:
             __build_best_by_stat('free_throw_percentage'),
             __build_best_by_stat('three_point_percentage'),
         ]
+    
+
+    def get_best_player(self) -> Player:
+        return max(self.players, key=lambda p : sum(vars(p.statistics).values()))
