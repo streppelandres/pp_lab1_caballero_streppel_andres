@@ -34,6 +34,7 @@ class App:
             '17': self.option_17, '18': self.option_18,
             '19': self.option_19, '20': self.option_20,
             '21': self.option_21, '22': self.option_22,
+            '23': self.option_23,
             'X': self.option_exit
         }
 
@@ -180,6 +181,15 @@ class App:
     def option_22(self):
         all_star_players = self.helper.get_all_star_players()
         r = [f'{dict(p)["name"]} ({dict(p)["quantity"]} veces All-Star)' for p in all_star_players]
+        print('\n'.join(r))
+    
+    def option_23(self):
+        r = []
+        for best in self.helper.get_best_stats_players():
+            best = dict(best)
+            r.append(
+                f'Mayor cantidad de {best["text"]}: {best["name"]} ({best["stat"]})'
+            )
         print('\n'.join(r))
 
     def option_exit(self):

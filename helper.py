@@ -164,3 +164,28 @@ class Helper:
                     break
         
         return sorted(all_star_players, key=lambda p : p['quantity'], reverse=True)
+    
+    def get_best_stats_players(self):
+
+        def __build_best_by_stat(stat_attr):
+            player = self.get_player_with_max_stat_attr(stat_attr)
+            return {
+                "name": player.name,
+                "stat": getattr(player.statistics, stat_attr),
+                "text": stat_attr.replace("_", " ").capitalize()
+            }
+        
+        return [
+            __build_best_by_stat('seasons'),
+            __build_best_by_stat('total_points'),
+            __build_best_by_stat('average_points_per_game'),
+            __build_best_by_stat('total_rebounds'),
+            __build_best_by_stat('average_rebounds_per_game'),
+            __build_best_by_stat('total_assists'),
+            __build_best_by_stat('average_assists_per_game'),
+            __build_best_by_stat('total_steals'),
+            __build_best_by_stat('total_blocks'),
+            __build_best_by_stat('field_goal_percentage'),
+            __build_best_by_stat('free_throw_percentage'),
+            __build_best_by_stat('three_point_percentage'),
+        ]
