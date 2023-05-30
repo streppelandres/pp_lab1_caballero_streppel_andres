@@ -130,3 +130,20 @@ class Helper:
         csv_head = ['player', 'points', 'rebounds', 'assist', 'steals']
         csv_body = [[p] + list(ranking[p].values()) for p in ranking]
         csv_utils.save_csv(self.__CSV_PATH, file_name, [csv_head] + csv_body)
+
+    def __get_grouped_players_by_key(self, key): 
+        grouped_players = {}
+        
+        # FIXME: Código medio repetido con get_ranking
+        for player in self.players:
+            if getattr(player, key) in grouped_players.keys():
+                grouped_players[getattr(player, key)].append(player)
+            else:
+                grouped_players[getattr(player, key)] = []
+                grouped_players[getattr(player, key)].append(player)
+
+        return grouped_players
+
+    def get_grouped_quantity_of_players_by_key(self, key):
+        grouped_players = self.__get_grouped_players_by_key(key)
+        return {k: len(grouped_players[k]) for k in grouped_players}

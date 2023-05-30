@@ -33,6 +33,7 @@ class App:
             '15': self.option_15, '16': self.option_16,
             '17': self.option_17, '18': self.option_18,
             '19': self.option_19, '20': self.option_20,
+            '21': self.option_21,
             'X': self.option_exit
         }
 
@@ -170,6 +171,11 @@ class App:
             print(f'{p}, puntos: {v[0]}, rebotes: {v[1]}, asistencias: {v[2]}, robos: {v[3]}')
         
         self.helper.save_ranking_to_csv(ranking, '23_bonus_ranking')
+    
+    def option_21(self):
+        grouped_by_position = self.helper.get_grouped_quantity_of_players_by_key('position')
+        r = '\n'.join([f'{p}: {grouped_by_position[p]}' for p in grouped_by_position])
+        print(r)
 
     def option_exit(self):
         print('Cyaaa 👋')
